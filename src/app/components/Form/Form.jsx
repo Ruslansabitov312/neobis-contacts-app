@@ -1,5 +1,8 @@
 import { Formik, Form, useField } from 'formik'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import * as Yup from 'yup'
+import { editContact } from '../../redux/contactsSlice'
 import './Form.sass'
 
 const MyTextInput = ({ label, ...props }) => {
@@ -16,17 +19,32 @@ const MyTextInput = ({ label, ...props }) => {
   )
 }
 
-const CustomForm = () => {
+const CustomForm = ({
+  id,
+  city,
+  country,
+  email,
+  firstName,
+  lastName,
+  phoneNumber,
+  website,
+}) => {
+  const [data, setData] = useState({})
+  const dispatch = useDispatch()
+  const submitHandle = () => {
+    dispatch(editContact(...data, id))
+  }
+
   return (
     <Formik
       initialValues={{
-        firstname: '',
-        lastname: '',
-        city: '',
-        country: '',
-        phone: '',
-        email: '',
-        website: '',
+        firstname: firstName,
+        lastname: lastName,
+        city: city,
+        country: country,
+        phone: phoneNumber,
+        email: email,
+        website: website,
       }}
       validationSchema={Yup.object({
         firstname: Yup.string()
@@ -46,7 +64,7 @@ const CustomForm = () => {
             /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
             'Недействительный номер телефона.'
           )
-          .min(13, 'Введите в международном формате: +996 (xxx) xxx-xxx.')
+          .min(11, 'Введите в международном формате: +996 (xxx) xxx-xxx.')
           .max(13, 'Не больше 13 символов.')
           .required('Пожалуйста, заполните это поле.'),
         email: Yup.string()
@@ -59,13 +77,13 @@ const CustomForm = () => {
           )
           .required('Пожалуйста, заполните это поле.'),
       })}
-      onSubmit={(values) => console.log(JSON.stringify(values, null, 2))}
+      onSubmit={(values) => setData(values)}
     >
       <Form className='form'>
-        <MyTextInput
-          label='Имя'
-          id='firstname'
-          name='firstname'
+        <MyTextInput 
+          label='Имя' 
+          id='firstname' 
+          name='firstname' 
           type='text'
         />
 
@@ -76,17 +94,17 @@ const CustomForm = () => {
           type='text'
         />
 
-        <MyTextInput
-          label='Город'
-          id='city'
-          name='city'
-          type='text'
+        <MyTextInput 
+          label='Город' 
+          id='city' 
+          name='city' 
+          type='text' 
         />
 
-        <MyTextInput
-          label='Страна'
-          id='country'
-          name='country'
+        <MyTextInput 
+          label='Страна' 
+          id='country' 
+          name='country' 
           type='text'
         />
 
@@ -97,21 +115,23 @@ const CustomForm = () => {
           type='text'
         />
 
-        <MyTextInput
-          label='Ваша почта'
-          id='email'
-          name='email'
-          type='email'
+        <MyTextInput 
+          label='Ваша почта' 
+          id='email' 
+          name='email' 
+          type='email' 
         />
 
-        <MyTextInput
-          label='Вебсайт'
-          id='website'
-          name='website'
-          type='text'
+        <MyTextInput 
+          label='Вебсайт' 
+          id='website' 
+          name='website' 
+          type='text' 
         />
 
-        <button type='submit'>Сохранить</button>
+        <button type='submit' onClick={() => submitHandle()}>
+          Сохранить
+        </button>
       </Form>
     </Formik>
   )

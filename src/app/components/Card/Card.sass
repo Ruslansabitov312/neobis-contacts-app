@@ -1,10 +1,56 @@
 .card
-  height: 400px
+  max-height: 340px
   max-width: 250px
   display: flex
   flex-direction: column
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.556)
+  box-shadow: 1px 1px 3px rgba(33, 33, 33, 0.25)
+  background: #FFFFFF
+  border-radius: 4px
+  &__image
+    &-item
+        width: 100%
+        height: 135px
+        border-radius: 4px 4px 0px 0px
+        
   &__content
-    
-.image
-  height: 135px
+    padding: 8px
+  &__title
+    display: flex
+    justify-content: space-between
+    &-name
+      font-family: Ubuntu
+      font-size: 18px
+      font-weight: 400
+      line-height: 21px
+      letter-spacing: 0em
+      text-align: left
+      margin: 8px 0px
+    &-icon
+      margin-right: 10px
+
+  &__info
+  &__location, &__phone, &__website, &__email
+    display: flex
+  &__location-title, &__phone-title, &__website-title, &__email-title
+    font-family: Ubuntu
+    font-size: 13px
+    font-weight: 400
+    line-height: 15px
+    letter-spacing: 0em
+    text-align: left
+    margin: 6px 5px
+  &__button
+    width: 80px
+    height: 21px
+    background: #212121
+    border-radius: 2px
+    font-family: Ubuntu
+    font-size: 14px
+    font-weight: 400
+    line-height: 16px
+    margin: 16px 0 0 146px
+    &-link
+      color: #FFFFFF
+      
+
+  
