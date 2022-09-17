@@ -21,7 +21,7 @@ const Details = () => {
     <Wrapper>
       <div className='details__wrapper'>
         <div className='details__ava'>
-          <img src={data.image} className='details__img' alt='ava' />
+          <img src={data.image} className='details__ava-item' alt='ava' />
         </div>
 
         <Form {...data} />

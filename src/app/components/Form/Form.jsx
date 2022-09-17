@@ -34,7 +34,7 @@ const CustomForm = ({
   const submitHandle = () => {
     dispatch(editContact(...data, id))
   }
-
+  console.log(data)
   return (
     <Formik
       initialValues={{
@@ -48,23 +48,23 @@ const CustomForm = ({
       }}
       validationSchema={Yup.object({
         firstname: Yup.string()
-          .min(2, 'Минимум 2 символа!')
+          .min(2, 'Минимум 2 символа.')
           .required('Пожалуйста, заполните это поле.'),
         lastname: Yup.string()
-          .min(2, 'Минимум 2 символа!')
+          .min(2, 'Минимум 2 символа.')
           .required('Пожалуйста, заполните это поле.'),
         city: Yup.string()
-          .min(2, 'Минимум 2 символа!')
+          .min(2, 'Минимум 2 символа.')
           .required('Пожалуйста, заполните это поле.'),
         country: Yup.string()
-          .min(2, 'Минимум 2 символа!')
+          .min(2, 'Минимум 2 символа.')
           .required('Пожалуйста, заполните это поле.'),
         phone: Yup.string()
           .matches(
             /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
             'Недействительный номер телефона.'
           )
-          .min(11, 'Введите в международном формате: +996 (xxx) xxx-xxx.')
+          .min(10, 'Введите в международном формате: +996 xxx xx xx xx.')
           .max(13, 'Не больше 13 символов.')
           .required('Пожалуйста, заполните это поле.'),
         email: Yup.string()
@@ -80,7 +80,7 @@ const CustomForm = ({
       onSubmit={(values) => setData(values)}
     >
       <Form className='form'>
-        <MyTextInput 
+        <MyTextInput
           label='Имя' 
           id='firstname' 
           name='firstname' 
